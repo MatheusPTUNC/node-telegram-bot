@@ -23,7 +23,7 @@ const verificarUsuario = (ctx, next) => {
     if (mesmoIDMsg || mesmoIDCallback) {
         next()
     } else {
-        ctx.reply('Desculpe, não fui autorizado a conversar com você...')
+        ctx.reply('Acesso Negado : Você é um usuário sem autorização!')
     }
 }
 
@@ -34,20 +34,23 @@ const processando = ({ reply }, next) =>
 bot.start(verificarUsuario, async ctx => {
     const name = ctx.update.message.from.first_name
     await ctx.reply(`Seja bem vindo, ${name}!`)
-    await ctx.reply('Escreva os itens que você deseja adicionar...')
+    await ctx.reply(`Este espaço é reservado para uma lista de criação de filmes compartilhada.
+    \nOs filmes adicionados ficarão destacados em forma de botão, para excluir um filme apenas clique em cima do botão.`)
+    await ctx.reply('Digite para começar criando a lista de filmes que quer assistir no futuro: ')
     ctx.session.lista = []
 })
 
 bot.on('text', verificarUsuario, processando, ctx => {
     let msg = ctx.update.message.text
     ctx.session.lista.push(msg)
-    ctx.reply(`${msg} adicionado!`, botoes(ctx.session.lista))
+    ctx.reply(`${msg} adicionado!
+    \nPara excluir, clique no botão em destaque abaixo.`, botoes(ctx.session.lista))
 })
 
 bot.action(/delete (.+)/, verificarUsuario, ctx => {
     ctx.session.lista = ctx.session.lista.filter(
         item => item !== ctx.match[1])
-    ctx.reply(`${ctx.match[1]} deletado!`, botoes(ctx.session.lista))
+    ctx.reply(`${ctx.match[1]} deletado! O que achou do filme?`, botoes(ctx.session.lista))
 })
 
 bot.startPolling()

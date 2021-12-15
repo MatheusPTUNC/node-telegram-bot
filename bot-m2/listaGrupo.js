@@ -20,7 +20,9 @@ const gerarBotoes = lista => Extra.markup(
 bot.start(async ctx => {
     const name = ctx.update.message.from.first_name
     await ctx.reply(`Seja bem vindo, ${name}!`)
-    await ctx.reply('Escreva os itens que você deseja adicionar...')
+    await ctx.reply(`Este espaço é reservado para uma lista de criação de filmes compartilhada.
+    \nOs filmes adicionados ficarão destacados em forma de botão, para excluir um filme apenas clique em cima do botão.`)
+    await ctx.reply('Digite para começar criando a lista de filmes que quer assistir no futuro: ')
 })
 
 bot.use((ctx,next) => {
@@ -37,7 +39,8 @@ bot.on('text', ctx => {
         texto = texto.substring(1)
     ctx.itens.push(texto)
     ctx.reply(
-        `${texto} adicionado!`, 
+        `${texto} adicionado!
+        \nPara excluir, clique no botão em destaque abaixo.`, 
         gerarBotoes(ctx.itens)
     )
 })

@@ -1,4 +1,4 @@
-**chatbot-node-telegram**
+**node-telegram-bot**
 
 Chatbot desenvolvido na disciplina de Sistemas de Apoio a Decisão do curso de Engenharia de Software - UnC Mafra - 20201/2
 
@@ -8,3 +8,5 @@ Ferramentas utilizadas:
 * Axios
 * Telegram
 * VSCode
+
+Aluno: Matheus Pilz Tschoeke

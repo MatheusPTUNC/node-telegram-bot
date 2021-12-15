@@ -1,9 +1,0 @@
-1   -   primeiroBot.js
-2   -   unicoUsuario.js
-3   -   eventos.js
-4   -   tiposRespostas.js
-5   -   devolveArquivo.js
-6   -   hears.js
-7   -   teclado.js
-8   -   comandos.js
-9   -   botoes.js
